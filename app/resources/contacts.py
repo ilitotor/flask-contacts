@@ -22,7 +22,23 @@ class Contacts(Resource):
 
 
     def put(self):
-        pass
+        payload = requests.only(["id", "name", "cellphone"])
+        name = payload["name"]
+        _id = payload["id"]
+        cellphone = payload["cellphone"]
+ 
+        contact = Contact.query.get(_id)
+
+        if not contact:
+            return {"message":"Contact not found"}
+        contact.name = name
+        contact.cellphone = cellphone
+
+        db.session.add(contact)
+        db.session.commit()
+
+        return marshal(contact, contact_field, "contact")
+
 
     def delete(self):
         payload  = requests.only(["id"])
