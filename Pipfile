@@ -8,6 +8,7 @@ flask-restful = "*"
 flask-sqlalchemy = "*"
 psycopg2 = "*"
 flask-migrate = "*"
+pyjwt = "*"
 
 [dev-packages]
 
